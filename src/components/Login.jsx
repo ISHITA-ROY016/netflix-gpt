@@ -2,6 +2,11 @@ import Header from "./Header";
 import Background from "../assets/bg-img.jpg";
 import { useRef, useState } from "react";
 import { checkValidData } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSignedInForm, setIsSignedInForm] = useState(true);
@@ -18,14 +23,54 @@ const Login = () => {
 
   const handleClick = () => {
     //validate the form data
-    const msg = checkValidData(
-      name.current.value,
+    const errMsg = checkValidData(
+      isSignedInForm ? null : name.current.value,
       email.current.value,
       password.current.value
     );
-    setErrMsg(msg);
+    setErrMsg(errMsg);
 
-    // sign in/ sign up
+    // if and error exists return nothing
+    if (errMsg) return;
+
+    // else sign in/ sign up
+
+    //sign up logic
+    if (!isSignedInForm) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrMsg(errorCode + " : " + errorMessage);
+        });
+    }
+    //sign in logic
+    else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrMsg(errorCode + " : " + errorMessage);
+        });
+    }
   };
 
   return (

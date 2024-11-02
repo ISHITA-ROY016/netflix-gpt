@@ -18,8 +18,6 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
 
-  // const navigate = useNavigate();
-
   const toggleSignInForm = () => {
     setIsSignedInForm(!isSignedInForm);
   };
@@ -53,7 +51,6 @@ const Login = () => {
           })
             .then(() => {
               // Profile updated!
-              // navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -78,7 +75,6 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          // navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;

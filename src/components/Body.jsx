@@ -11,7 +11,7 @@ const Body = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid, email, displayName }));
@@ -21,7 +21,11 @@ const Body = () => {
         navigate("/");
       }
     });
-  }, []);
+
+    // unsubscribes when component unmounts
+    return unsubscribe;
+    
+  }, []); //empty dependency array => renders when my component loads 1st time
 
   return (
     <div>

@@ -24,7 +24,7 @@ const Body = () => {
 
     // unsubscribes when component unmounts
     return unsubscribe;
-    
+     
   }, []); //empty dependency array => renders when my component loads 1st time
 
   return (

@@ -1,4 +1,4 @@
-![netflix-gpt-2](https://github.com/user-attachments/assets/06b45598-0428-4c1d-aec3-8788814b9723) # Features
+ # Features
   
   - Login/Signup page
     - Sign in/ Sign up form
@@ -22,6 +22,14 @@
 
 
  # Gallery
+
+![netflix-gpt-2](https://github.com/user-attachments/assets/e667a568-d9e5-49ac-bf1e-cfc2230c104a)
+
+&nbsp;
+
+
+![netflix-gpt-1](https://github.com/user-attachments/assets/d3b5245a-349a-4d63-b3ea-acf738493cbd)
+
 
  
    

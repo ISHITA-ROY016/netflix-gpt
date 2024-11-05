@@ -1,36 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { TRAILER_API_OPTIONS } from "../utils/constants";
+import React from "react";
+import {useSelector} from "react-redux";
+import useTrailers from "../hooks/useTrailers";
+
 
 const VideoBg = ({ movieId }) => {
-  const [trailerUrl, setTrailerUrl] = useState("");
+  const trailerVideo = useSelector((store) => store.movies.trailerVideos);
 
-  const getMovieTrailer = async () => {
-    const url = "https://imdb146.p.rapidapi.com/v1/title/?id=" + movieId;
-    const data = await fetch(url, TRAILER_API_OPTIONS);
-    const json = await data.json();
-    console.log(json.primaryVideos);
-
-    const trailer = json.primaryVideos?.edges[0]?.node?.playbackURLs[0]?.url;
-    console.log(trailer);
-
-    if (trailer) {
-      setTrailerUrl(trailer);
-    }
-  };
-
-  useEffect(() => {
-    getMovieTrailer();
-    return () => {
-      setTrailerUrl(""); // Clear the URL when component unmounts
-    };
-  }, []);
+  useTrailers(movieId);
 
   return (
-    <div>
-      {" "}
-      {trailerUrl ? (
-        <video width="560" height="315" controls preload="auto">
-          <source src={trailerUrl} type="video/mp4" />
+    <div className="absolute inset-0 -z-10 overflow-hidden">
+      {trailerVideo ? (
+        <video className="w-full h-full aspect-video object-cover" controls preload="auto" autoPlay loop muted>
+          <source src={trailerVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       ) : (

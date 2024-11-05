@@ -19,11 +19,11 @@ const Header = () => {
       });
   };
   return (
-    <div className="absolute w-full px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
+    <div className="absolute w-full px-8 py-2 bg-gradient-to-b from-black z-20 flex justify-between">
       <img src={Logo} alt="logo" className="w-32" />
       {user && (
         <button
-          className="border border-solid border-black"
+          className="border border-solid border-black text-white"
           onClick={handleSignOut}
         >
           Sign out

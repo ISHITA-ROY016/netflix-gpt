@@ -18,9 +18,11 @@ const MainContainer = () => {
   const movieId = tmdbId.split("/")[1];
 
   return (
-    <div>
-      <VideoTitle title={originalTitle} overview={overview} />
+    <div className="relative w-full h-screen overflow-hidden">
       <VideoBg movieId={imdbId} />
+      <div className="relative z-10">
+        <VideoTitle title={originalTitle} overview={overview} />
+      </div>
     </div>
   );
 };

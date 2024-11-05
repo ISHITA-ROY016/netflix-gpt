@@ -10,11 +10,11 @@ function useTrailers(movieId) {
     const url = "https://imdb146.p.rapidapi.com/v1/title/?id=" + movieId;
     const data = await fetch(url, TRAILER_API_OPTIONS);
     const json = await data.json();
-    console.log(json.primaryVideos);
+    // console.log(json.primaryVideos);
 
     const trailer = json.primaryVideos?.edges[0]?.node?.playbackURLs[0]?.url;
 
-    console.log(trailer);
+    // console.log(trailer);
 
     if (trailer) {
       dispatch(addTrailerVideos(trailer));

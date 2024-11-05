@@ -6,21 +6,21 @@
 //     }
 // };
 
-export const API_OPTIONS = {
+export const NOW_PLAYING_API_OPTIONS = {
     method: 'GET',
     headers: {
         'x-rapidapi-key': '0bd6ee3cbdmsh4bbd37d9e53dd20p1509b9jsn86f3fd4488be',
         'x-rapidapi-host': 'streaming-availability.p.rapidapi.com'
+    },
+};
+
+export const MOVIES_API_OPTIONS = {
+    method: 'GET',
+    headers: {
+        'x-rapidapi-key': '0bd6ee3cbdmsh4bbd37d9e53dd20p1509b9jsn86f3fd4488be',
+        'x-rapidapi-host': 'moviesverse1.p.rapidapi.com'
     }
 };
-// export const TRAILER_API_OPTIONS = {
-//     method: 'GET',
-//     headers: {
-//         'x-rapidapi-key': '0bd6ee3cbdmsh4bbd37d9e53dd20p1509b9jsn86f3fd4488be',
-//         'x-rapidapi-host': 'advance-movie-api.p.rapidapi.com'
-//     }
-// };
-
 export const TRAILER_API_OPTIONS = {
     method: 'GET',
     headers: {

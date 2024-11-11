@@ -28,3 +28,5 @@ export const TRAILER_API_OPTIONS = {
         'x-rapidapi-host': 'imdb146.p.rapidapi.com'
     }
 };
+
+export  const key="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";

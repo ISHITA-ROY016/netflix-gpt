@@ -12,7 +12,7 @@ const GPTSearchBar = () => {
         />
         <button className="p-2 m-4 col-span-2 bg-red-600 text-white rounded-md flex items-center justify-center">
           <FaSearch size={23} />
-        </button>
+        </button>3
       </form>
     </div>
   );

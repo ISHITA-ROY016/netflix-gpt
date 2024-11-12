@@ -14,7 +14,7 @@ const GPTMovieSuggestions = () => {
   }
 
   return (
-    <div className="flex flex-wrap justify-center gap-2">
+    <div className="mt-7 flex flex-wrap justify-center gap-2">
       {movieResults.map((movieArray) =>
         movieArray?.map((movie) => (
           <MovieCard movie={movie} key={movie.id} />

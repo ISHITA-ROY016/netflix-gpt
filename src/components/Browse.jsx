@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Header";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import useUpComingMovies from "../hooks/useUpcomingMovies";
 import GPTSearch from "./GPTSearch";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearGptMovieResults } from "../utils/gptSlice";
 
 const Browse = () => {
+  const dispatch=useDispatch();
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   useNowPlayingMovies();
   // useUpComingMovies();
+
+  useEffect(()=>{
+    if(!showGptSearch){
+      dispatch(clearGptMovieResults());
+    }
+  },[showGptSearch, dispatch]);
   return (
     <div>
       <Header />
@@ -22,15 +30,6 @@ const Browse = () => {
           <SecondaryContainer />
         </>
       )}
-
-      {/*
-        MainContainer
-          - VideoBackground
-          - VideoTitle
-        SecondaryContainer
-          - MovieList * n
-          - cards * n
-       */}
     </div>
   );
 };

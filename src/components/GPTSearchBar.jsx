@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import { NOW_PLAYING_API_OPTIONS } from "../utils/constants";
 import openai from "../utils/openai";
 import { useDispatch } from "react-redux";
-import { addGptMovieResults } from "../utils/gptSlice";
+import { addGptMovieResults, setLoading } from "../utils/gptSlice";
 
 const GPTSearchBar = () => {
   const searchText = useRef(null);
@@ -11,7 +11,10 @@ const GPTSearchBar = () => {
 
   const handleGptSearchClick = async () => {
     // console.log(searchText.current.value);
-    //make an api call to openAi and get movie results
+
+    if (!searchText.current.value) return;
+
+    dispatch(setLoading(true));
 
     const gptQuery = `You are a Movie Recommendation system. Based on the query, provide a list of exactly 5 movie titles that match the query "${searchText.current.value}".
   
@@ -27,29 +30,35 @@ const GPTSearchBar = () => {
   
   Query: "${searchText.current.value}"`;
 
-    const completion = await openai.chat.completions.create({
-      model: "microsoft/phi-3-medium-128k-instruct:free",
-      messages: [
-        {
-          role: "user",
-          content: gptQuery,
-        },
-      ],
-    });
-    console.log(completion.choices[0].message.content);
-    const getMovies = completion.choices[0].message.content.split(/,\s*/);
-    console.log(getMovies);
-    const movieArr = getMovies.map((movie) => fetchMovieDetails(movie)); // it will return a promise array
+    try {
+      const completion = await openai.chat.completions.create({
+        model: "microsoft/phi-3-medium-128k-instruct:free",
+        messages: [
+          {
+            role: "user",
+            content: gptQuery,
+          },
+        ],
+      });
+      console.log(completion.choices[0].message.content);
+      const getMovies = completion.choices[0].message.content.split(/,\s*/);
+      console.log(getMovies);
+      const movieArr = getMovies.map((movie) => fetchMovieDetails(movie)); // it will return a promise array
 
-    // reads array of promises and resolves them into json output
-    const movieResults = await Promise.all(movieArr);
-    // Filter each element to have a max of 6 objects
-    const limitedMovieResults = movieResults.map((movieArray) =>
-      movieArray.slice(0, 6)
-    );
-    console.log(limitedMovieResults);
+      // reads array of promises and resolves them into json output
+      const movieResults = await Promise.all(movieArr);
+      // Filter each element to have a max of 6 objects
+      const limitedMovieResults = movieResults.map((movieArray) =>
+        movieArray.slice(0, 6)
+      );
+      console.log(limitedMovieResults);
 
-    dispatch(addGptMovieResults(limitedMovieResults));
+      dispatch(addGptMovieResults(limitedMovieResults));
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+    } finally {
+      dispatch(setLoading(false));
+    }
   };
 
   const fetchMovieDetails = async (movie) => {

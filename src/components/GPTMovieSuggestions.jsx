@@ -4,7 +4,19 @@ import MovieCard from "./MovieCard";
 
 const GPTMovieSuggestions = () => {
   const gpt = useSelector((store) => store.gpt);
-  const movieResults = gpt.gptMovies;
+  const { gptMovies: movieResults, loading } = gpt;
+
+  // Loader Component
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-[50vh]">
+        <div className="absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center">
+          {/* Tailwind CSS Loader */}
+          <div className="w-16 h-16 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+        </div>
+      </div>
+    );
+  }
 
   // Check if movieResults is falsy or an empty array
   if (!movieResults || movieResults.length === 0) {
@@ -14,11 +26,9 @@ const GPTMovieSuggestions = () => {
   }
 
   return (
-    <div className="mt-7 flex flex-wrap justify-center gap-2">
+    <div className="my-7 flex flex-wrap justify-center gap-2">
       {movieResults.map((movieArray) =>
-        movieArray?.map((movie) => (
-          <MovieCard movie={movie} key={movie.id} />
-        ))
+        movieArray?.map((movie) => <MovieCard movie={movie} key={movie.id} />)
       )}
     </div>
   );

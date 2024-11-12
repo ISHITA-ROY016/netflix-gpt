@@ -8,14 +8,10 @@ const MainContainer = () => {
 
   if (movies === null) return;
 
-  const randomIndex = Math.floor(Math.random() * movies?.length);
-  //   console.log(randomIndex);
-
-  const mainMovie = movies[randomIndex];
+  const mainMovie = movies[0];
   console.log(mainMovie);
 
-  const { originalTitle, overview, tmdbId, imdbId } = mainMovie;
-  const movieId = tmdbId.split("/")[1];
+  const { originalTitle, overview, imdbId } = mainMovie;
 
   return (
     <div className="relative w-full h-screen overflow-hidden">

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUpcomingMovies } from "../utils/movieSlice";
 import getMovieByTitle from "../components/getMovieByTitle";
 
 const useUpComingMovies = () => {
   const dispatch = useDispatch();
-
+  const upComingMovies=useSelector(store=>store.movies.upComingMovies);
   const getUpcomingMovies = async () => {
     const url = "https://movies-tv-shows-database.p.rapidapi.com/?page=1";
     const options = {
@@ -40,7 +40,7 @@ const useUpComingMovies = () => {
   };
 
   useEffect(() => {
-    getUpcomingMovies();
+    !upComingMovies && getUpcomingMovies();
   }, []);
 };
 

@@ -1,11 +1,11 @@
-import {useEffect} from 'react';
+import { useEffect } from "react";
 import { TRAILER_API_OPTIONS } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTrailerVideos } from "../utils/movieSlice";
 
 function useTrailers(movieId) {
-    const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
+  const nowPlayingTrailer = useSelector((store) => store.movies.trailerVideos);
   const getMovieTrailer = async () => {
     const url = "https://imdb146.p.rapidapi.com/v1/title/?id=" + movieId;
     const data = await fetch(url, TRAILER_API_OPTIONS);
@@ -22,8 +22,8 @@ function useTrailers(movieId) {
   };
 
   useEffect(() => {
-    getMovieTrailer();
+    !nowPlayingTrailer && getMovieTrailer();
   }, []);
 }
 
-export default useTrailers
+export default useTrailers;

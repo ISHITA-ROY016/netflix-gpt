@@ -5,8 +5,13 @@ import Background from "../assets/bg-img.jpg";
 
 const GPTSearch = () => {
   return (
-    <div>
-      <img src={Background} alt="" className="object-cover w-screen h-screen absolute -z-10 opacity-90" />
+    <div
+      className="relative min-h-screen w-full bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${Background})`,
+      }}
+    >
+      <div className="absolute inset-0 bg-black opacity-70 -z-10"></div>
       <GPTSearchBar />
       <GPTMovieSuggestions />
     </div>

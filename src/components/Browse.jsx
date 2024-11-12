@@ -12,7 +12,7 @@ const Browse = () => {
   const dispatch=useDispatch();
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   useNowPlayingMovies();
-  // useUpComingMovies();
+  useUpComingMovies();
 
   useEffect(()=>{
     if(!showGptSearch){

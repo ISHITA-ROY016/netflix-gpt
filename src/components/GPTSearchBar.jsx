@@ -2,18 +2,30 @@ import React, { useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 import { NOW_PLAYING_API_OPTIONS } from "../utils/constants";
 import openai from "../utils/openai";
+import { useDispatch } from "react-redux";
+import { addGptMovieResults } from "../utils/gptSlice";
 
 const GPTSearchBar = () => {
   const searchText = useRef(null);
+  const dispatch = useDispatch();
 
   const handleGptSearchClick = async () => {
     // console.log(searchText.current.value);
     //make an api call to openAi and get movie results
 
-    const gptQuery =
-      "Act as a Movie Recommendation system and suggest some movies for the query" +
-      searchText.current.value +
-      ". Only give me name of exactly 5 comma separated movies. For examples; Don, Sholay, Gadar, Stree 2, Koi Mil Gaya. If the query is any movie name like bhool bhulaiyaa give me all the movies that matches exactly the movie name. For example for query bhool bhulaiyaa the results will be; bhool bhulaiyaa, bhool bhulaiyaa 2, bhool bhulaiyaa 3";
+    const gptQuery = `You are a Movie Recommendation system. Based on the query, provide a list of exactly 5 movie names.
+  
+  If the query is a specific movie name like "${searchText.current.value}", return all movies that match exactly with that name. If the query is more general (e.g., genre-based like "Indian comedy movies"), list exactly 5 relevant movie names.
+  
+  If there are many matching movies, just pick any 5. If there are fewer than 5, fill in with other popular or closely related movies until there are exactly 5. 
+  
+  Only output the names of the movies in a single line, comma-separated, and without any extra text or formatting.
+  
+  Examples:
+  - Query: "Don" → Output: Don, Don 2, The Don, Baazigar, Sholay
+  - Query: "Indian comedy movies" → Output: Hera Pheri, 3 Idiots, Dhamaal, Golmaal, Chup Chup Ke
+  
+  Query: "${searchText.current.value}"`;
 
     const completion = await openai.chat.completions.create({
       model: "microsoft/phi-3-medium-128k-instruct:free",
@@ -31,13 +43,13 @@ const GPTSearchBar = () => {
 
     // reads array of promises and resolves them into json output
     const movieResults = await Promise.all(movieArr);
-    // Filter each element to have a max of 5 objects
+    // Filter each element to have a max of 6 objects
     const limitedMovieResults = movieResults.map((movieArray) =>
       movieArray.slice(0, 6)
     );
-
-    // Now, limitedMovieResults will contain arrays with a max of 5 objects each
     console.log(limitedMovieResults);
+
+    dispatch(addGptMovieResults(limitedMovieResults));
   };
 
   const fetchMovieDetails = async (movie) => {

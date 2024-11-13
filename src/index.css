@@ -9,12 +9,35 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-y: scroll; 
+  overflow-y: auto; 
 }
 
+/* Apply a custom scrollbar style */
 ::-webkit-scrollbar {
-  display: none;
+  width: 5px; /* Set the width of the scrollbar */
+  height: 5px;
 }
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(210, 18, 4, 0.7); /* Blue color for the thumb */
+  min-height: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, rgba(210, 18, 4, 0.7), rgb(127, 31, 31));
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(237, 226, 226, 0.1); /* Light background for the track */
+  border-radius: 10px; /* Optional: rounded corners for the track */
+  margin: 4px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(0, 0, 0, 0.1); /* Track color */
+}
+
 
 @keyframes gradient-x {
   0% {

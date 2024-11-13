@@ -29,6 +29,17 @@ body {
   animation: gradient-x 5s linear infinite;
 }
 
+/* In your CSS file (e.g., styles.css) */
+.bg-radial-effect {
+  background-image: 
+    radial-gradient(circle at 5% 30%, rgba(0, 108, 255, 0.3), transparent 60%),   /* Top-left */
+    radial-gradient(circle at 5% 70%, rgba(0, 255, 200, 0.2), transparent 60%),  /* Bottom-left */
+    radial-gradient(circle at 95% 20%, rgba(255, 50, 100, 0.3), transparent 60%), /* Top-right */
+    radial-gradient(circle at 95% 80%, rgba(255, 180, 0, 0.2), transparent 60%); /* Bottom-right */
+  background-color: black; /* Ensure the black background remains */
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

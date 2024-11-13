@@ -1,5 +1,6 @@
 import React from "react";
 import { FaPlay } from "react-icons/fa";
+import { FaInfoCircle } from "react-icons/fa";
 
 const VideoTitle = ({ title, overview }) => {
   return (
@@ -9,13 +10,12 @@ const VideoTitle = ({ title, overview }) => {
       </h1>
       <p className="hidden md:inline-block py-6 text-lg w-1/3">{overview}</p>
       <div className="flex flex-col gap-4 sm:flex-row pt-10 md:pt-0">
-        <button
-          className="flex justify-center items-center w-[30%] md:w-auto py-3 px-2 md:px-12 mr-6 bg-white text-black rounded-md text-lg hover:bg-green-400 hover:bg-opacity-50 transition-colors duration-200 ease-in-out border border-transparent hover:border-solid hover:border-white active:bg-green-600"
-        >
-          <FaPlay /> Play
+        <button className="flex justify-center items-center w-[30%] md:w-auto py-3 px-2 md:px-12 mr-6 bg-white text-black rounded-md text-lg hover:bg-green-400 hover:bg-opacity-50 transition-colors duration-200 ease-in-out border border-transparent hover:border-solid hover:border-white active:bg-green-600">
+          <FaPlay className="mr-1" /> Play
         </button>
-        <button className="w-[40%] md:w-auto py-3 px-2 md:px-12 bg-gray-300 rounded-md text-lg bg-opacity-55 hover:bg-gray-500 border border-transparent hover:border-solid hover:border-white active:bg-gray-600">
-          ℹ More Info
+        <button className="flex justify-center items-center w-[40%] md:w-auto py-3 px-2 md:px-12 bg-gray-300 rounded-md text-lg bg-opacity-55 hover:bg-gray-500 border border-transparent hover:border-solid hover:border-white active:bg-gray-600">
+          <FaInfoCircle className="mr-1" />
+          More Info
         </button>
       </div>
     </div>

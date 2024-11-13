@@ -7,7 +7,7 @@ const MovieCard = ({ movie }) => {
   if (!poster) return null;
 
   return (
-    <div className="min-w-[200px] h-[250px] md:h-[320px] lg:h-[350px]">
+    <div className="min-w-[200px] h-[250px] md:h-[280px] lg:h-[320px]">
       <img
         src={poster}
         alt={movie.title}

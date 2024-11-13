@@ -11,7 +11,7 @@ const VideoBg = ({ movieId }) => {
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
       {trailerVideo ? (
-        <video className="w-full h-full aspect-video object-cover" controls preload="auto" autoPlay loop muted>
+        <video className="w-full h-2/3 md:h-full aspect-video object-cover" controls preload="auto" autoPlay loop muted>
           <source src={trailerVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>

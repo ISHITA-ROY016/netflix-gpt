@@ -6,7 +6,7 @@ import Background from "../assets/bg-img.jpg";
 const GPTSearch = () => {
   return (
     <div
-      className="relative min-h-screen w-full bg-cover bg-center"
+      className="relative min-h-screen w-full bg-cover"
       style={{
         backgroundImage: `url(${Background})`,
       }}

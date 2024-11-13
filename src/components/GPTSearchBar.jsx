@@ -71,24 +71,26 @@ const GPTSearchBar = () => {
     return json;
   };
   return (
-    <div className="pt-[8%]">
+    <div className="pt-[30%] md:pt-[20%] lg:pt-[10%]">
       <form
-        className="w-1/2 mx-auto bg-black grid grid-cols-12"
+        className="w-[90%] md:w-1/2 mx-auto bg-black flex flex-col md:flex-row items-center justify-between gap-2 p-4 rounded-lg"
         onSubmit={(e) => e.preventDefault()}
       >
+        {/* Search Input */}
         <input
           ref={searchText}
           type="text"
-          className="p-3 m-4 col-span-10"
+          className="w-full flex-1 p-3 mb-2 md:mb-0 bg-white text-black rounded-md"
           placeholder="What would you like to watch today?"
         />
+
+        {/* Search Button */}
         <button
-          className="p-2 m-4 col-span-2 bg-red-600 text-white rounded-md flex items-center justify-center"
+          className="p-3 bg-red-600 text-white rounded-md flex items-center justify-center w-full md:w-auto"
           onClick={handleGptSearchClick}
         >
           <FaSearch size={23} />
         </button>
-        3
       </form>
     </div>
   );

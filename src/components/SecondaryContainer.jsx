@@ -6,9 +6,10 @@ import useUpComingMovies from "../hooks/useUpcomingMovies";
 const SecondaryContainer = () => {
   const movies = useSelector((store) => store.movies);
   return (
-    movies.nowPlayingMovies && movies.upcomingMovies && (
+    movies.nowPlayingMovies &&
+    movies.upcomingMovies && (
       <div className="bg-black text-white pb-6">
-        <div className="-mt-28 relative z-30">
+        <div className="-mt-72 sm:-mt-56 md:-mt-40 lg:-mt-28 relative z-30">
           <MovieList title={"now playing"} movies={movies.nowPlayingMovies} />
           <MovieList title={"trending"} movies={movies.nowPlayingMovies} />
           {/* <MovieList title={"upcoming movies"} movies={movies.upcomingMovies} /> */}

@@ -1,9 +1,9 @@
 import Logo from "../assets/logo.svg";
 import { signOut } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth } from "../../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleGptSearchView } from "../utils/gptSlice";
+import { toggleGptSearchView } from "../../utils/redux/gptSlice";
 
 const Header = () => {
   const navigate = useNavigate();

@@ -1,13 +1,13 @@
-import Header from "./Header";
+import Header from "../layout/Header";
 import Background from "../assets/bg-img.jpg";
 import { useRef, useState } from "react";
-import { checkValidData } from "../utils/validate";
+import { checkValidData } from "../../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth } from "../../utils/firebase";
 
 const Login = () => {
   const [isSignedInForm, setIsSignedInForm] = useState(true);

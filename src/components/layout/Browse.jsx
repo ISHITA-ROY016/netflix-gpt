@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import Header from "./Header";
 import useNowPlayingMovies from "../../hooks/useNowPlayingMovies";
-import MainContainer from "../MainContainer";
-import SecondaryContainer from "../SecondaryContainer";
+import MainContainer from "../layout/MainContainer";
+import SecondaryContainer from "../layout/SecondaryContainer";
 import useUpComingMovies from "../../hooks/useUpcomingMovies";
 import GPTSearch from "../gpt/GPTSearch";
 import { useDispatch, useSelector } from "react-redux";

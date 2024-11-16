@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addUpcomingMovies } from "../utils/redux/movieSlice";
-import getMovieByTitle from "../components/getMovieByTitle";
+import getMovieByTitle from "../components/movie/getMovieByTitle";
 
 const useUpComingMovies = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const useUpComingMovies = () => {
     const options = {
       method: "GET",
       headers: {
-        "x-rapidapi-key": "0bd6ee3cbdmsh4bbd37d9e53dd20p1509b9jsn86f3fd4488be",
+        "x-rapidapi-key": process.env.REACT_APP_MOVIES_TVSHOWS_DB,
         "x-rapidapi-host": "movies-tv-shows-database.p.rapidapi.com",
         Type: "get-recently-added-movies",
       },

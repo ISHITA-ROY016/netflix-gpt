@@ -1,4 +1,4 @@
-import { NOW_PLAYING_API_OPTIONS } from "../utils/constants";
+import { NOW_PLAYING_API_OPTIONS } from "../../utils/constants";
 
 const getMovieByTitle = async (title) => {
   const url = 'https://streaming-availability.p.rapidapi.com/shows/search/title?country=in&title='+title+'&series_granularity=show&show_type=movie&output_language=en';

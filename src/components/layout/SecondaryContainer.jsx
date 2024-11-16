@@ -1,7 +1,7 @@
 import React from "react";
-import MovieList from "./MovieList";
+import MovieList from "../movie/MovieList";
 import { useSelector } from "react-redux";
-import useUpComingMovies from "../hooks/useUpcomingMovies";
+import useUpComingMovies from "../../hooks/useUpcomingMovies";
 
 const SecondaryContainer = () => {
   const movies = useSelector((store) => store.movies);

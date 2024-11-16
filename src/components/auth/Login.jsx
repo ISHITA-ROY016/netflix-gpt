@@ -1,5 +1,5 @@
 import Header from "../layout/Header";
-import Background from "../assets/bg-img.jpg";
+import Background from "../../assets/bg-img.jpg";
 import { useRef, useState } from "react";
 import { checkValidData } from "../../utils/validate";
 import {
